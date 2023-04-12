@@ -14,9 +14,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Backend.TechChallenge.Application\Backend.TechChallenge.Application.csproj" />
+    <ProjectReference Include="..\Backend.TechChallenge.Infrastructure\Backend.TechChallenge.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Files\Users.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Database\" />
   </ItemGroup>
 
 
