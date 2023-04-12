@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Backend.TechChallenge.Application.Model;
+using Backend.TechChallenge.Application.Models.User;
 
 namespace Backend.TechChallenge.Api.Controllers
 {
@@ -174,14 +175,5 @@ namespace Backend.TechChallenge.Api.Controllers
                 //Validate if Phone is null
                 errors = errors + " The phone is required";
         }
-    }
-    public class User
-    {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public string UserType { get; set; }
-        public decimal Money { get; set; }
     }
 }

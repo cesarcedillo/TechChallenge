@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Backend.TechChallenge.Application.Models.User;
 using System.IO;
 
 namespace Backend.TechChallenge.Api.Controllers
