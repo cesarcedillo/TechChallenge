@@ -1,6 +1,7 @@
 using System;
 using System.Dynamic;
 using Backend.TechChallenge.Api.Controllers;
+using Backend.TechChallenge.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 using Xunit;
@@ -15,7 +16,9 @@ namespace Backend.TechChallenge.Test
         {
             var userController = new UsersController();
 
-            var result = userController.CreateUser("Mike", "mike@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124").Result;
+            var inputUser = new DtoInputUser("Mike", "mike@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124");
+
+            var result = userController.CreateUser(inputUser).Result;
 
 
             Assert.Equal(true, result.IsSuccess);
@@ -27,7 +30,9 @@ namespace Backend.TechChallenge.Test
         {
             var userController = new UsersController();
 
-            var result = userController.CreateUser("Agustina", "Agustina@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124").Result;
+            var inputUser = new DtoInputUser("Agustina", "Agustina@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124");
+
+            var result = userController.CreateUser(inputUser).Result;
 
 
             Assert.Equal(false, result.IsSuccess);

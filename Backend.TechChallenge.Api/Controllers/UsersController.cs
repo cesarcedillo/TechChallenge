@@ -1,4 +1,5 @@
-﻿using Backend.TechChallenge.Application.Models;
+﻿using Backend.TechChallenge.Application.Dtos;
+using Backend.TechChallenge.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,11 @@ namespace Backend.TechChallenge.Api.Controllers
 
         [HttpPost]
         [Route("/create-user")]
-        public async Task<Result> CreateUser(string name, string email, string address, string phone, string userType, string money)
+        public async Task<Result> CreateUser(DtoInputUser inputUser)
         {
             var errors = "";
 
-            ValidateErrors(name, email, address, phone, ref errors);
+            ValidateErrors(inputUser.Name, inputUser.Email, inputUser.Address, inputUser.Phone, ref errors);
 
             if (errors != null && errors != "")
                 return new Result()
@@ -34,47 +35,47 @@ namespace Backend.TechChallenge.Api.Controllers
 
             var newUser = new User
             {
-                Name = name,
-                Email = email,
-                Address = address,
-                Phone = phone,
-                UserType = userType,
-                Money = decimal.Parse(money)
+                Name = inputUser.Name,
+                Email = inputUser.Email,
+                Address = inputUser.Address,
+                Phone = inputUser.Phone,
+                UserType = inputUser.UserType,
+                Money = decimal.Parse(inputUser.Money)
             };
 
             if (newUser.UserType == "Normal")
             {
-                if (decimal.Parse(money) > 100)
+                if (decimal.Parse(inputUser.Money) > 100)
                 {
                     var percentage = Convert.ToDecimal(0.12);
                     //If new user is normal and has more than USD100
-                    var gif = decimal.Parse(money) * percentage;
+                    var gif = decimal.Parse(inputUser.Money) * percentage;
                     newUser.Money = newUser.Money + gif;
                 }
-                if (decimal.Parse(money) < 100)
+                if (decimal.Parse(inputUser.Money) < 100)
                 {
-                    if (decimal.Parse(money) > 10)
+                    if (decimal.Parse(inputUser.Money) > 10)
                     {
                         var percentage = Convert.ToDecimal(0.8);
-                        var gif = decimal.Parse(money) * percentage;
+                        var gif = decimal.Parse(inputUser.Money) * percentage;
                         newUser.Money = newUser.Money + gif;
                     }
                 }
             }
             if (newUser.UserType == "SuperUser")
             {
-                if (decimal.Parse(money) > 100)
+                if (decimal.Parse(inputUser.Money) > 100)
                 {
                     var percentage = Convert.ToDecimal(0.20);
-                    var gif = decimal.Parse(money) * percentage;
+                    var gif = decimal.Parse(inputUser.Money) * percentage;
                     newUser.Money = newUser.Money + gif;
                 }
             }
             if (newUser.UserType == "Premium")
             {
-                if (decimal.Parse(money) > 100)
+                if (decimal.Parse(inputUser.Money) > 100)
                 {
-                    var gif = decimal.Parse(money) * 2;
+                    var gif = decimal.Parse(inputUser.Money) * 2;
                     newUser.Money = newUser.Money + gif;
                 }
             }
