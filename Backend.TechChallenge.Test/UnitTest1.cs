@@ -16,7 +16,7 @@ namespace Backend.TechChallenge.Test
         {
             var userController = new UsersController();
 
-            var inputUser = new DtoInputUser("Mike", "mike@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124");
+            var inputUser = new DtoInputUser(null, "mike@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124");
 
             var result = userController.CreateUser(inputUser).Result;
 

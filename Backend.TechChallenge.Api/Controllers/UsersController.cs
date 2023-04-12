@@ -1,9 +1,12 @@
 ﻿using Backend.TechChallenge.Application.Dtos;
 using Backend.TechChallenge.Application.Models;
+using Backend.TechChallenge.Application.Validators;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Backend.TechChallenge.Api.Controllers
@@ -22,15 +25,14 @@ namespace Backend.TechChallenge.Api.Controllers
         [Route("/create-user")]
         public async Task<Result> CreateUser(DtoInputUser inputUser)
         {
-            var errors = "";
+            DtoInputUserValidator userValidator = new DtoInputUserValidator();
+            ValidationResult userValidationResult = userValidator.Validate(inputUser);
 
-            ValidateErrors(inputUser.Name, inputUser.Email, inputUser.Address, inputUser.Phone, ref errors);
-
-            if (errors != null && errors != "")
+            if (!userValidationResult.IsValid)
                 return new Result()
                 {
                     IsSuccess = false,
-                    Errors = errors
+                    Errors = string.Join(" ", userValidationResult.Errors)
                 };
 
             var newUser = new User
