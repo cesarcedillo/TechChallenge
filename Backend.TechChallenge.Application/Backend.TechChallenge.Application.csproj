@@ -10,4 +10,12 @@
     <PackageReference Include="FluentValidation" Version="11.5.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Backend.TechChallenge.Domain\Backend.TechChallenge.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
