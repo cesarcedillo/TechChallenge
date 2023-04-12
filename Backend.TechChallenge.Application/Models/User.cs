@@ -1,4 +1,4 @@
-﻿namespace Backend.TechChallenge.Application.Models.User
+﻿namespace Backend.TechChallenge.Application.Models
 {
     public class User
     {

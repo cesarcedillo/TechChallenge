@@ -1,4 +1,4 @@
-﻿namespace Backend.TechChallenge.Application.Model
+﻿namespace Backend.TechChallenge.Application.Models
 {
     public class Result
     {

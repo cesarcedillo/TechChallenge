@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Backend.TechChallenge.Application.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Backend.TechChallenge.Application.Model;
-using Backend.TechChallenge.Application.Models.User;
 
 namespace Backend.TechChallenge.Api.Controllers
 {
