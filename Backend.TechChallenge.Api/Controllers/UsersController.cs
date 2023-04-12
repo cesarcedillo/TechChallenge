@@ -1,19 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Backend.TechChallenge.Application.Model;
 
 namespace Backend.TechChallenge.Api.Controllers
 {
-    public class Result
-    {
-        public bool IsSuccess { get; set; }
-        public string Errors { get; set; }
-    }
-
     [ApiController]
     [Route("[controller]")]
     public partial class UsersController : ControllerBase
