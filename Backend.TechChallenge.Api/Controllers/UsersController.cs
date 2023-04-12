@@ -8,7 +8,7 @@ using Backend.TechChallenge.Application.Model;
 namespace Backend.TechChallenge.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/v1/[controller]")]
     public partial class UsersController : ControllerBase
     {
 
