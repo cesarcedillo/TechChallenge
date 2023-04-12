@@ -17,7 +17,7 @@ namespace Backend.TechChallenge.Infrastructure.Persistence
             }
         }
 
-        private static IEnumerable<User> GetPreconfiguredUsers()
+        public static IEnumerable<User> GetPreconfiguredUsers()
         {
             var users = new List<User>();
             var path = @"..\Backend.TechChallenge.Infrastructure\Data\Users.txt";

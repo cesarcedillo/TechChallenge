@@ -50,31 +50,17 @@ namespace Backend.TechChallenge.Api.Controllers
             }
             catch(Exception ex)
             {
+                var message = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    message = ex.InnerException.Message;
+                }
                 return new Result()
                 {
                     IsSuccess = false,
-                    Errors = ex.Message
+                    Errors = message
                 };
             }
-
-            //foreach (var user in _users)
-            //{
-            //    if (user.Email == newUser.Email || 
-            //        user.Phone == newUser.Phone ||
-            //        (user.Name == newUser.Name && user.Address == newUser.Address)
-            //        )
-            //    {
-            //        Debug.WriteLine("The user is duplicated");
-
-            //        return new Result()
-            //        {
-            //            IsSuccess = false,
-            //            Errors = "The user is duplicated"
-            //        };
-            //    }
-            //}
-
-            //WriteUserToFile(newUser);
 
             return new Result()
             {

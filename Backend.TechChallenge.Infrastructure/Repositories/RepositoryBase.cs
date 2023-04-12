@@ -74,7 +74,7 @@ namespace Backend.TechChallenge.Infrastructure.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> AddAsync(T entity)
+        public virtual async Task<T> AddAsync(T entity)
         {
             _context.Set<T>().Add(entity);
             await _context.SaveChangesAsync();
@@ -95,7 +95,7 @@ namespace Backend.TechChallenge.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public void AddEntity(T entity)
+        public virtual void AddEntity(T entity)
         {
             _context.Set<T>().Add(entity);
         }

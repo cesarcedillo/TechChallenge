@@ -1,33 +1,38 @@
-using System;
-using System.Dynamic;
-using AutoMapper;
+﻿using AutoMapper;
 using Backend.TechChallenge.Api.Controllers;
+using Backend.TechChallenge.Application.Contracts.Persistence;
 using Backend.TechChallenge.Application.Dtos;
 using Backend.TechChallenge.Application.Mappings;
-using Microsoft.AspNetCore.Mvc;
-
+using Backend.TechChallenge.Infrastructure.Repositories;
+using Moq;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using Xunit;
 
-namespace Backend.TechChallenge.Test
+namespace Backend.TechChallenge.Test.Controllers
 {
     [CollectionDefinition("Tests", DisableParallelization = true)]
-    public class UnitTest1
+    public class UserControllerTest
     {
         private readonly IMapper _mapper;
+        private readonly Mock<UserRepository> _userRepository;
 
-        public UnitTest1()
+        public UserControllerTest()
         {
+            _userRepository = MockUserRepository.GetUserRepository();
             var mapperConfig = new MapperConfiguration(configuration =>
             {
                 configuration.AddProfile<MappingProfile>();
             });
             _mapper = mapperConfig.CreateMapper();
+            MockUserRepository.AddDataUserRepository(_userRepository.Object.UserDbContext);
         }
 
         [Fact]
-        public void Test1()
+        public void UserControllerTest_Create_Success()
         {
-            var userController = new UsersController(_mapper);
+            var userController = new UsersController(_mapper, _userRepository.Object);
 
             var inputUser = new DtoInputUser("Mike", "mike@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124");
 
@@ -39,11 +44,11 @@ namespace Backend.TechChallenge.Test
         }
 
         [Fact]
-        public void Test2()
+        public void UserControllerTest_Create_Fail_Duplicated()
         {
-            var userController = new UsersController(_mapper);
+            var userController = new UsersController(_mapper, _userRepository.Object);
 
-            var inputUser = new DtoInputUser("Agustina", "Agustina@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124");
+            var inputUser = new DtoInputUser("Cesar", "Cesar@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124");
 
             var result = userController.CreateUser(inputUser).Result;
 

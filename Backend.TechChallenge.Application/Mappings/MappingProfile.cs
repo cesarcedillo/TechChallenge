@@ -10,8 +10,6 @@ namespace Backend.TechChallenge.Application.Mappings
         public MappingProfile()
         {
             CreateMap<DtoInputUser, User>()
-                .ForMember(user => user.Money, 
-                            expression => expression.MapFrom(dtoInputUser => decimal.Parse(dtoInputUser.Money)))
                 .ForMember(user => user.UserType, 
                             expression => expression.MapFrom(dtoInputUser => EnumHelper<UserTypes>.Parse(dtoInputUser.UserType)))
                 .ForMember(user => user.Money, 

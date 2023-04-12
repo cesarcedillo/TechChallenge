@@ -6,6 +6,10 @@ namespace Backend.TechChallenge.Application.Dtos
 {
     public class DtoInputUser
     {
+        public DtoInputUser()
+        {
+
+        }
         public DtoInputUser(string name, string email, string address, string phone, string userType, string money)
         {
             Name = name;
