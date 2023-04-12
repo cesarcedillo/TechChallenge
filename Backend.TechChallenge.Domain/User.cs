@@ -1,4 +1,6 @@
-﻿namespace Backend.TechChallenge.Domain
+﻿using Backend.TechChallenge.Domain.Common;
+
+namespace Backend.TechChallenge.Domain
 {
     public enum UserTypes
     {
@@ -7,7 +9,7 @@
         Premium
     }
 
-    public class User
+    public class User : BaseDomainModel
     {
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
