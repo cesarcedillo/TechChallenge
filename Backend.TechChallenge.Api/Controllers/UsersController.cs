@@ -1,4 +1,5 @@
-﻿using Backend.TechChallenge.Application.Dtos;
+﻿using AutoMapper;
+using Backend.TechChallenge.Application.Dtos;
 using Backend.TechChallenge.Application.Models;
 using Backend.TechChallenge.Application.Validators;
 using FluentValidation.Results;
@@ -17,8 +18,11 @@ namespace Backend.TechChallenge.Api.Controllers
     {
 
         private readonly List<User> _users = new List<User>();
-        public UsersController()
+        private IMapper _mapper;
+
+        public UsersController(IMapper mapper)
         {
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -35,15 +39,7 @@ namespace Backend.TechChallenge.Api.Controllers
                     Errors = string.Join(" ", userValidationResult.Errors)
                 };
 
-            var newUser = new User
-            {
-                Name = inputUser.Name,
-                Email = inputUser.Email,
-                Address = inputUser.Address,
-                Phone = inputUser.Phone,
-                UserType = inputUser.UserType,
-                Money = decimal.Parse(inputUser.Money)
-            };
+            var newUser = _mapper.Map<User>(inputUser);
 
             if (newUser.UserType == "Normal")
             {
